@@ -36,8 +36,8 @@ public class OrderModelImplement implements OrderModel {
         for (int i = 0; i < list.size(); i++) {
             int checkStart = list.get(i).getCreateAt().compareTo(dateStart);
             int checkEnd = list.get(i).getCreateAt().compareTo(dateEnd);
-            System.out.println("CheckStart = "+ checkStart);
-            System.out.println("CheckEnd = " + checkEnd);
+//            System.out.println("CheckStart = "+ checkStart);
+//            System.out.println("CheckEnd = " + checkEnd);
             int checkStatus = list.get(i).getStatus();
             if (checkStart >= 0 && checkEnd <= 0 && checkStatus == 1){
                 Order order = list.get(i);
