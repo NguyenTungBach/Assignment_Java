@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class DateTimeUtil {
 
-    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-DD");
+    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public static Date parseDateString(String strDateTime){
         try {

@@ -99,6 +99,7 @@ public class OrderControllerImplement implements OrderController {
 
         if (orderModel.save(order)){
             System.out.println("Action success");
+            show();
         }else {
             System.out.println("Action failse");
         }
