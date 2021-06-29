@@ -159,6 +159,13 @@ public class OrderControllerImplement implements OrderController {
         if (list == null){
             System.out.println("Have no finished order from time " + dateStart + "  to " +dateEnd +"\n" );
         } else {
+            System.out.printf("%5s%8s%5s | %1s%21s%14s | %5s%30s%15s | %8s%10s%7s | %5s%15s%5s | %5s%10s%5s\n",
+                    "","Id", "",
+                    "","User", "",
+                    "","Product", "",
+                    "","Total Price", "",
+                    "","Create At", "",
+                    "","Status", "");
             for (int i = 0; i < list.size(); i++) {
                 Order orderTime = list.get(i);
                 System.out.println(orderTime.toString());
