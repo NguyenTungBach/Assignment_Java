@@ -93,6 +93,6 @@ public class OrderModelImplement implements OrderModel {
             return false;
         }
         list.remove(existOrder);
-        return false;
+        return true;
     }
 }

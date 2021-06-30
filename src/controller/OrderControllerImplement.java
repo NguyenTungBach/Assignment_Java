@@ -274,13 +274,22 @@ public class OrderControllerImplement implements OrderController {
             System.out.println(order.toString());
             System.out.println("\n---------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("Are you sure (y/n)");
-            String choice = scanner.nextLine();
-            if (choice.equalsIgnoreCase("y")){
-                if (orderModel.delete(id)){
-                    System.out.println("Delete student id " + order.getId() + " success\n");
+            while (true){
+                String choice = scanner.nextLine();
+                if (choice.equalsIgnoreCase("y")){
+                    if (orderModel.delete(id)){
+                        System.out.println("Delete Order id " + order.getId() + " success\n");
+                    } else {
+                        System.out.println("Delete Order id " + order.getId() + " failse\n");
+                    }
+                    break;
+                } if (choice.equalsIgnoreCase("n")){
+                    System.out.println("Delete Order id " + order.getId() + " failse\n");
+                    break;
                 } else {
-                    System.out.println("Delete student id " + order.getId() + " failse\n");
+                    System.out.println("Enter Wrong, Please, Enter y/n");
                 }
+
             }
         }
     }
