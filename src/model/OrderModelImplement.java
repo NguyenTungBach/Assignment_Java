@@ -3,6 +3,7 @@ package model;
 import entity.Order;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -60,5 +61,29 @@ public class OrderModelImplement implements OrderModel {
             }
         }
         return order;
+    }
+
+    @Override
+    public boolean update(String id, Order updateObj) {
+        Order existOrder = findById(id);
+        if (existOrder == null){
+            return false;
+        }
+        existOrder.setUser(updateObj.getUser());
+        existOrder.setProduct(updateObj.getProduct());
+        existOrder.setTotalPrice(updateObj.getTotalPrice());
+        existOrder.setUpdateAt(Calendar.getInstance().getTime());
+        existOrder.setStatus(updateObj.getStatus());
+        return true;
+    }
+
+    @Override
+    public boolean delete(String id) {
+        Order existOrder = findById(id);
+        if (existOrder == null){
+            return false;
+        }
+        list.remove(existOrder);
+        return false;
     }
 }

@@ -5,6 +5,6 @@ public interface OrderController {
     void show();
     void search();
     void revenue();
-//    void update();
-//    void delete();
+    void update();
+    void delete();
 }

@@ -23,6 +23,8 @@ public class OrderViewImplement implements OrderView {
             System.out.println("2. Search order by id");
             System.out.println("3. Revenue by time");
             System.out.println("4. Show List Order");
+            System.out.println("5. Update List Order by ID");
+            System.out.println("6. Delete List Order by ID");
             System.out.println("0. Exit");
             System.out.println("==========================");
             System.out.println("Please enter your choice (0-3)");
@@ -40,6 +42,12 @@ public class OrderViewImplement implements OrderView {
                     break;
                 case 4:
                     orderController.show();
+                    break;
+                case 5:
+                    orderController.update();
+                    break;
+                case 6:
+                    orderController.delete();
                     break;
             }
             if (choice == 0){

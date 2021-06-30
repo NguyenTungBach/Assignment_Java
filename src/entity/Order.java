@@ -17,6 +17,7 @@ public class Order {
     private String product;
     private int totalPrice;
     private Date createAt;
+    private Date updateAt;
     private int status;
 
     public Order() {
@@ -28,6 +29,7 @@ public class Order {
         this.product = product;
         this.totalPrice = totalPrice;
         this.createAt = getDateNowFormat();
+        this.updateAt = getDateNowFormat();
         this.status = status;
     }
 
@@ -37,6 +39,7 @@ public class Order {
         this.product = product;
         this.totalPrice = totalPrice;
         this.createAt = DateTimeUtil.parseDateString(strCreateAt);
+        this.updateAt = this.createAt;
         this.status = status;
     }
 
@@ -58,17 +61,21 @@ public class Order {
 
     @Override
     public String toString() {
-        return String.format("%5s%6s%5s | %1s%21s%14s | %5s%30s%15s | %8s%10s%8s | %5s%15s%5s | %5s%10s%5s",
+        return String.format("%5s%6s%5s | %1s%21s%14s | %5s%30s%15s | %8s%10s%8s | %5s%15s%5s | %5s%15s%5s | %5s%10s%5s",
                 "",id, "",
                 "",user, "",
                 "",product, "",
                 "",format.format(totalPrice), "",
                 "",getCreateAtString(), "",
+                "",getUpdateAtString(), "",
                 "",getStatusName(), "");
     }
 
     private String getCreateAtString(){
         return DateTimeUtil.formatDateToString(this.createAt);
+    }
+    private String getUpdateAtString(){
+        return DateTimeUtil.formatDateToString(this.updateAt);
     }
 
     public String getId() {
@@ -117,5 +124,13 @@ public class Order {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public Date getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Date updateAt) {
+        this.updateAt = updateAt;
     }
 }

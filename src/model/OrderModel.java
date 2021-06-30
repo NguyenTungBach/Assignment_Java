@@ -12,6 +12,6 @@ public interface OrderModel {
     List<Order> findByTime(Date dateStart, Date dateEnd);
     Order findById(String id);
 //    phát triển sau
-//    boolean update(String id, Shop updateObj);
-//    boolean delete(String id);
+    boolean update(String id, Order updateObj);
+    boolean delete(String id);
 }
