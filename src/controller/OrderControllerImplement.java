@@ -29,7 +29,7 @@ public class OrderControllerImplement implements OrderController {
         String id;
         while (true){
             id = scanner.nextLine();
-            if (id.equals("")){
+            if (id==null){
                 System.out.println("Please Enter id Order");
             } else if (id.length() > 10){
                 System.out.println("id Order <= 10, Please Enter Again");
@@ -63,16 +63,24 @@ public class OrderControllerImplement implements OrderController {
         }
 //        shop.setProduct(product);
 
-        System.out.println("Enter totalPrice Order, totalPrice is not allow <= 0 : ");
+        System.out.println("Enter totalPrice Order");
         int totalPrice;
-        while (true){
-            totalPrice = scanner.nextInt();
-            if (totalPrice <= 0){
-                System.out.println("totalPrice can not <= 0 , Please Enter Again");
-            } else {
-                break;
+//        while (true){
+//            totalPrice = scanner.nextInt();
+//            if (totalPrice <= 0){
+//                System.out.println("totalPrice can not <= 0 , Please Enter Again");
+//            } else {
+//                break;
+//            }
+//        }
+        do {
+            System.out.println("TotalPrice is not allow <= 0 : ");
+            while (!scanner.hasNextInt()){
+                System.out.println("You are not Enter Price Order or this is not a number");
+                scanner.next();
             }
-        }
+            totalPrice = scanner.nextInt();
+        } while (totalPrice <= 0);
         scanner.nextLine();
 //        shop.setTotalPrice(totalPrice);
 
@@ -82,18 +90,25 @@ public class OrderControllerImplement implements OrderController {
 
 //        shop.setCreateAt(Calendar.getInstance().getTime());
 
-        System.out.println("Status Date Order: 0. Deleted, 1. Paid, 2. UnPaid");
+        System.out.println("Status Date Order: ");
         int status ;
-        while (true){
-            status = scanner.nextInt();
-            if (status >2 || status < 0){
+//        while (true){
+//            status = scanner.nextInt();
+//            if (status >2 || status < 0){
+//                System.out.println("Enter Wrong, Again");
+//            } else {
+//                break;
+//            }
+//        }
+        do {
+            System.out.println("0. Deleted, 1. Paid, 2. UnPaid ");
+            while (!scanner.hasNextInt()){
                 System.out.println("Enter Wrong, Again");
-            } else {
-                break;
+                scanner.next();
             }
-        }
+            status = scanner.nextInt();
+        } while (status >2 || status < 0);
         scanner.nextLine();
-//        shop.setStatus(status);
 
         Order order = new Order(id,user,product,totalPrice,status);
 

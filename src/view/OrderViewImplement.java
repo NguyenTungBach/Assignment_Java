@@ -22,8 +22,8 @@ public class OrderViewImplement implements OrderView {
             System.out.println("1. Add new order");
             System.out.println("2. Search order by id");
             System.out.println("3. Revenue by time");
-//            System.out.println("4. Show List Order");
-            System.out.println("4. Exit");
+            System.out.println("4. Show List Order");
+            System.out.println("0. Exit");
             System.out.println("==========================");
             System.out.println("Please enter your choice (0-3)");
             int choice = scanner.nextInt();
@@ -38,11 +38,11 @@ public class OrderViewImplement implements OrderView {
                 case 3:
                     orderController.revenue();
                     break;
-//                case 4:
-//                    orderController.show();
-//                    break;
+                case 4:
+                    orderController.show();
+                    break;
             }
-            if (choice == 4){
+            if (choice == 0){
                 System.out.println("Program Manage Shop Finnish\n");
                 break;
             }
