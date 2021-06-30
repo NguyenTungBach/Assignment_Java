@@ -64,6 +64,15 @@ public class OrderModelImplement implements OrderModel {
     }
 
     @Override
+    public boolean checkId(String id) {
+        Order order = findById(id);
+        if (order==null){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     public boolean update(String id, Order updateObj) {
         Order existOrder = findById(id);
         if (existOrder == null){

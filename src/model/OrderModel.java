@@ -11,6 +11,7 @@ public interface OrderModel {
     List<Order> findAll();
     List<Order> findByTime(Date dateStart, Date dateEnd);
     Order findById(String id);
+    boolean checkId(String id);
 //    phát triển sau
     boolean update(String id, Order updateObj);
     boolean delete(String id);

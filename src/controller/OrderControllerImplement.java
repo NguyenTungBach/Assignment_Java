@@ -29,6 +29,9 @@ public class OrderControllerImplement implements OrderController {
         } else if (id.length() > 10){
             System.out.println("id Order <= 10, Please Enter Again");
             return false;
+        } else if (orderModel.checkId(id)){
+            System.out.println("This id existed, Please Enter Again");
+            return false;
         }
         return true;
     }
