@@ -21,7 +21,14 @@ public class OrderControllerImplement implements OrderController {
         this.scanner = new Scanner(System.in);
     }
 
-
+    private boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false; // Nhập chữ trả về false
+        }
+        return true;
+    }
     private boolean checkInputInt(String id){
         if (id.equals("")){
             System.out.println("Please Enter id Order");
@@ -52,15 +59,24 @@ public class OrderControllerImplement implements OrderController {
         return true;
     }
 
-    private boolean checkInputPrice(int totalPrice){
-        if (totalPrice <= 0){
-            return true;
+//    private boolean checkInputPrice(int totalPrice){
+//        if (totalPrice <= 0){
+//            return true;
+//        }
+//        return false;
+//    }
+
+    private boolean checkInputPriceInt(String totalPriceInt){
+        if (totalPriceInt.equals("")){
+            System.out.println("Please Enter totalPrice");
+            return false;
         }
-        return false;
+        return true;
     }
 
     private boolean checkInputStatus(int status){
         if (status >2 || status < 0){
+            System.out.println("Status Wrong");
             return true;
         }
         return false;
@@ -97,22 +113,37 @@ public class OrderControllerImplement implements OrderController {
         }
 
         System.out.println("Enter totalPrice Order");
-        int totalPrice;
-        do {
+//        int totalPrice;
+//        do {
             System.out.println("TotalPrice is not allow <= 0 : ");
-            while (!scanner.hasNextInt()){
-                System.out.println("You are not Enter Price Order or this is not a number");
-                scanner.next();
-            }
-            totalPrice = scanner.nextInt();
-        } while (checkInputPrice(totalPrice));
+//            while (!scanner.hasNextInt()){
+//                System.out.println("You are not Enter Price Order or this is not a number");
+//                scanner.next();
+//            }
+//            totalPrice = scanner.nextInt();
+//        } while (checkInputPrice(totalPrice));
 
-        scanner.nextLine();
+        int totalPriceInt;
+        while (true){
+            String totalPrice = scanner.nextLine();
+            if (checkInputPriceInt(totalPrice)){
+                if (isInteger(totalPrice) && Integer.valueOf(totalPrice) >0){
+                    totalPriceInt = Integer.valueOf(totalPrice);
+                    System.out.println("OK");
+                    break;
+                }
+                else if (isInteger(totalPrice) && Integer.valueOf(totalPrice) <=0) {
+                    System.out.println("TotalPrice is not allow <= 0, Please Enter Again");
+                } else {
+                    System.out.println("This is not a number");
+                }
+            }
+        }
 
         System.out.println("Status Date Order: ");
         int status ;
         do {
-            System.out.println("0. Deleted, 1. Paid, 2. UnPaid ");
+            System.out.println("Enter 0. Deleted, 1. Paid, 2. UnPaid ");
             while (!scanner.hasNextInt()){
                 System.out.println("Enter Wrong, Again");
                 scanner.next();
@@ -121,7 +152,7 @@ public class OrderControllerImplement implements OrderController {
         } while (checkInputStatus(status));
         scanner.nextLine();
 
-        Order order = new Order(id,user,product,totalPrice,status);
+        Order order = new Order(id,user,product,totalPriceInt,status);
 
         if (orderModel.save(order)){
             System.out.println("Action success");
@@ -215,22 +246,27 @@ public class OrderControllerImplement implements OrderController {
             }
 
             System.out.println("Enter totalPrice Order");
-            int totalPrice;
-            do {
-                System.out.println("TotalPrice is not allow <= 0 : ");
-                while (!scanner.hasNextInt()){
-                    System.out.println("You are not Enter Price Order or this is not a number");
-                    scanner.next();
+            int totalPriceInt;
+            while (true){
+                String totalPrice = scanner.nextLine();
+                if (checkInputPriceInt(totalPrice)){
+                    if (isInteger(totalPrice) && Integer.valueOf(totalPrice) >0){
+                        totalPriceInt = Integer.valueOf(totalPrice);
+                        System.out.println("OK");
+                        break;
+                    }
+                    else if (isInteger(totalPrice) && Integer.valueOf(totalPrice) <=0) {
+                        System.out.println("TotalPrice is not allow <= 0, Please Enter Again");
+                    } else {
+                        System.out.println("This is not a number");
+                    }
                 }
-                totalPrice = scanner.nextInt();
-            } while (checkInputPrice(totalPrice));
-
-            scanner.nextLine();
+            }
 
             System.out.println("Status Date Order: ");
             int status ;
             do {
-                System.out.println("0. Deleted, 1. Paid, 2. UnPaid ");
+                System.out.println("Enter 0. Deleted, 1. Paid, 2. UnPaid ");
                 while (!scanner.hasNextInt()){
                     System.out.println("Enter Wrong, Again");
                     scanner.next();
@@ -241,7 +277,7 @@ public class OrderControllerImplement implements OrderController {
 
             order.setUser(user);
             order.setProduct(product);
-            order.setTotalPrice(totalPrice);
+            order.setTotalPrice(totalPriceInt);
             order.setStatus(status);
 
             if (orderModel.update(id, order)){
