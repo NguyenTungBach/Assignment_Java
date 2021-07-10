@@ -43,6 +43,16 @@ public class Order {
         this.status = status;
     }
 
+    public Order(String id, String user, String product, int totalPrice, Date createAt, Date updateAt, int status) {
+        this.id = id;
+        this.user = user;
+        this.product = product;
+        this.totalPrice = totalPrice;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+        this.status = status;
+    }
+
     private String getStatusName(){
         if (this.status == 0){
             return "Deleted";
@@ -71,12 +81,13 @@ public class Order {
                 "",getStatusName(), "");
     }
 
-    private String getCreateAtString(){
+    public String getCreateAtString(){
         return DateTimeUtil.formatDateToString(this.createAt);
     }
-    private String getUpdateAtString(){
+    public String getUpdateAtString(){
         return DateTimeUtil.formatDateToString(this.updateAt);
     }
+
 
     public String getId() {
         return id;
@@ -118,6 +129,8 @@ public class Order {
         this.createAt = createAt;
     }
 
+
+
     public int getStatus() {
         return status;
     }
@@ -129,6 +142,8 @@ public class Order {
     public Date getUpdateAt() {
         return updateAt;
     }
+
+
 
     public void setUpdateAt(Date updateAt) {
         this.updateAt = updateAt;

@@ -21,4 +21,6 @@ public class DateTimeUtil {
     public static String formatDateToString(Date date){
         return simpleDateFormat.format(date);
     }
+
+
 }
